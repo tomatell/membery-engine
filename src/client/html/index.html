@@ -48,6 +48,7 @@
 	<script src="js/safeUrlEncoder.js"></script>
 	<script src="js/QueryFilter.js"></script>
 
+
 </head>
 <body ng-app="x-registries" ng-class="{'login-page': !security.currentUser.systemCredentials.login.loginName}">
 
@@ -61,8 +62,10 @@
 	<nav>
 		<ul>
 			<li ng-show="hasPermissions(['System User'])"><span class="text-block"
-				><span>{{security.currentUser.systemCredentials.login.loginName}}&nbsp;&nbsp;&nbsp;<i class="icon-user"></i> </span
-			></li>
+				>{{security.currentUser.baseData.name}}&nbsp;{{security.currentUser.baseData.surName}}</span></li>
+				<li ng-show="hasPermissions(['System User'])"><img ng-src="{{security.currentUser.photoInfo.photo}}" width=auto height=40px align="middle" style="PADDING-TOP: 2px;PADDING-BOTTOM: 2px">
+			
+			</li>
 			<li ng-show="!hasPermissions(['System User'])"><a href="#/help" target="_blank"><i class="icon-question-circle"></i></a></li>
 			<li ng-show="hasPermissions(['System User'])"><a href="#/help"><i class="icon-question-circle"></i></a></li>
 			<li ng-show="hasPermissions(['System User'])" class="" ng-controller="xpsui:SecurityLogoutCtrl"><a

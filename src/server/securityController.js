@@ -661,9 +661,35 @@ var SecurityController = function(mongoDriver, schemaRegistry, options) {
 	/**
 	* Minimalistic version of user return
 	*/
-	function deflateUser(user,permissions){
+	function deflateUser(user, permissions) {
 		log.silly(permissions);
-		return {id:user.id,systemCredentials:{login:{loginName:user.systemCredentials.login.loginName},permissions:permissions,profiles:user.systemCredentials.profiles||[]}};
+		
+		var name = '';
+		var surName = '';
+		if(!user.photoInfo || user.photoInfo.photo === undefined) {
+			user.photoInfo = {};
+			user.photoInfo.photo = 'img/no_photo.jpg';
+		}
+		if(!user.baseData.name.v) {
+			name = user.baseData.name;
+		} else {
+
+			name = user.baseData.name.v;
+		}
+		if(!user.baseData.surName.v) {
+			surName = user.baseData.surName;
+		} else {
+			surName = user.baseData.surName.v;
+		}
+
+		return {
+			id: user.id, 
+			systemCredentials: {login: {loginName: user.systemCredentials.login.loginName}, 
+			permissions: permissions, profiles: user.systemCredentials.profiles || []}, 
+			photoInfo: {photo: user.photoInfo.photo}, 
+			baseData: {name: name, surName: surName}
+		};
+
 	}
 
 	this.verifyUserPassword = function(user, passwordSample, callback) {
