@@ -1,0 +1,29 @@
+language: node_js
+
+env:
+  global:
+    - secure: I+/QCIeIPlWJRTtBVPHGYbSn6Ca1Z1Dp/OcCF4J/gCGVGuPgTu81/l0sP1rAty3NfRNvqnsNmJQTyEBuR5X+a9GCnbWjogzivypYXgRY/ovmCNdinnSXLdct+3ewHKAOLzb4sEV8c7edsDxZ2SusyGNbop7th/c+5+u+RW1SDEY=
+    - secure: AyQc+X5uNI0Pwibglf1iutu7ddJmE1J1zghK1HXtgVRBDW275C2RN9NUZw5dYihzNResgP7flJK5ol18ffwa8JnSgtRfSte/KfNaF/Fo1My8GMxBVbXbXnY0SLYNxepNXOUn0c9jbhgUPzakpS5SHhP8bXv6uy0FvsO+zCktqow=
+
+node_js:
+  - "0.12"
+  - "0.11"
+
+addons:
+  sauce_connect: true
+
+services:
+  - mongodb
+
+before_install:
+  - "npm install -g grunt-cli bower"
+  - "gem install sass --version 3.4.0"
+  - "bower install"
+  # Add demo01 data
+  - "./tools/setupData.sh demo01"
+
+before_script:
+  - "./node_modules/.bin/webdriver-manager update"
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - "sleep 3"

@@ -1,0 +1,136 @@
+// base layout
+body {
+	font-family: $font-family-base;
+	font-size: $font-size-base;
+	line-height: $line-height-base;
+	background: $page-bg;
+}
+
+body{
+	height: 100%;
+}
+
+[class^="glyphicon-"], [class*="glyphicon-"] {
+	position: relative;
+	top: 1px;
+	display: inline-block;
+	font-family: 'Glyphicons Halflings';
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+h1{
+    font-size: $font-size-h1;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+h2{
+    font-size: $font-size-h2;
+}
+
+#main-wrapper{
+	min-width: $device-min-width;
+	width: 100%;
+	position: absolute;
+	height:100%;
+	padding-top: $header-height;
+}
+
+// Content
+#content-wrapper{
+	height: 100%;
+	overflow: auto;
+	padding-top: $content-padding;
+	color: $font-color-base;
+}
+
+#content{
+	min-height: 100%;
+	
+	h1{
+		margin-left: $content-padding / 2;
+		margin-top: 0;
+	}
+}
+
+// Menu
+ul.menu {
+	margin-top:46px;
+}
+
+// grid system
+.row {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+// modal win
+.psui-modal{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 50;
+	background-color: rgba(0, 0, 0, 0.5);
+	@include media-mobile{
+		background-color: rgba(0, 0, 0, 1);
+	}
+		
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	
+	.psui-modal-dialog{
+		position: relative;
+		margin: 30px 0px;
+		float: left;
+		left: 50%;
+	}
+	.psui-modal-content{
+		position: relative;
+		float: left;
+		left: -50%;
+		@include box-shadow(0 3px 9px rgba(0,0,0,.5));
+	}
+}
+
+.content-actions{
+	text-align: right;
+	padding: 0px 20px;
+	width: 100%;
+	color: rgb(0, 0, 238);
+	a{
+		display: inline-block;
+		// margin-right: -15px;
+		color: rgb(0, 0, 238);
+		padding: 0px 10px;
+		text-decoration: underline;
+		// border: 1px solid  rgb(0, 0, 238);
+		// border-top:0px;
+		// border-bottom: 0px;
+		// + a{
+		// 	// border-left: 0px;
+		// 	position: relative;
+		// 	right: 1px;
+		// }
+
+		&:hover{
+			color: rgb(0, 0, 238);
+			text-decoration: none;
+		}
+	}
+}
+
+a.forgotten {
+	position: absolute;
+	right: 7px;
+	top: 8px;
+}
+
+.recaptchatable {
+	width: 100%;
+}

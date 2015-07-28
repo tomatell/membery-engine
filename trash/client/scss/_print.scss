@@ -1,0 +1,120 @@
+@include media-print {
+	body{
+		font-size: 12px;
+		// margin: 20mm 15mm 20mm 20mm;
+	}
+
+	@page {
+		size: auto;
+		margin: 20mm 15mm 20mm 20mm;
+		// margin: 20mm 15mm 20mm 20mm;
+		// counter-increment: page;
+
+		// @bottom-right {
+		// 	content: "Page " counter(page);
+		// 	content: "Page " counter(page) " / " counter(pages);
+		// }
+		// @bottom-center {
+		// 	content: "Date 05.06.2014";
+		// }
+		// @top-left {
+		// 	content: "Test";
+		// }
+	}
+
+	.no-print{
+		display: none !important;
+	}
+
+	.row,
+	.container-fluid,
+	#main-wrapper,
+	#content,
+	#content-wrapper
+	{
+		margin: 0px !important;
+		padding: 0px !important;
+	}
+
+	#main-wrapper{
+		> header{
+			display: none;
+		}
+	}
+	
+	#main-menu{
+		display: none;
+		width:0;
+	}
+
+	.content-actions{
+		display: none;
+	}
+	
+	#content{
+		> footer{
+			display: none;
+			// position: fixed;
+			// bottom: 0px;
+		}
+	}
+	
+	#content-wrapper{
+		height: auto;
+		overflow: visible;
+	}
+	
+	* {
+		color: #000;	
+		background-color: #fff;
+		@include box-shadow(none);
+		/*border: 1px solid red !important;*/
+	}
+	
+	.form-group{
+		margin-bottom: 0px;
+
+		> div,
+		> label{
+			float: left;
+		}
+		
+		> label {
+			width: 40% !important;
+		}
+		
+		> div{
+			width: 60% !important;
+		}
+	}
+	
+	label.psui-required:after{
+		content: "";
+	}
+	
+	fieldset > legend, fieldset .legend {
+		padding: 10px 0px 2px 0px;
+		margin-bottom: 5px;
+	}
+
+
+	.psui-inlineedit-view {
+		padding: 0px 36px 0px 12px;
+		line-height: 1.1em;
+		border: 0px !important;
+		font-size: 12px !important;
+		&:after,
+		&:before{
+			content: "" !important;;
+		}
+
+		table td{
+			padding: 3px 0px;
+		}
+	}
+	
+	.form-horizontal .control-label {
+		padding-top: 3px;
+	}
+
+}

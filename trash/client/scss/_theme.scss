@@ -1,0 +1,31 @@
+a {
+	color: $button-submit-bg;
+}
+
+a:hover, a:focus {
+	color: $button-submit-hover-bg;
+}
+
+.btn-primary {
+	background-color: $button-submit-bg;
+	border-color: $button-submit-border-color;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active {
+	background-color: $button-submit-hover-bg;
+	border-color: $button-submit-hover-border-color;
+}
+
+table.schemaedit tr.selected td {
+	background-color: $main-color;
+	color: white;
+}
+
+// Buttons
+.btn-primary {
+  @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+}
+
+.btn-secondary {
+  @include button-variant($btn-secoundary-color, $btn-secoundary-bg, $btn-secoundary-border);
+}

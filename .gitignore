@@ -1,0 +1,15 @@
+node_modules/
+data
+data/
+build/
+bower_components/
+coverage/
+doc/
+.project
+.sass-cache/
+.settings
+nbproject/
+local-config.js
+npm-debug.log
+.idea
+.tern-project

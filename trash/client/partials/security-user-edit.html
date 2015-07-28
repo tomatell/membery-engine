@@ -1,0 +1,152 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="psui-search col-md-12 col-lg-8 ">
+			<form class="form form-horizontal">
+				<fieldset>
+				<legend>{{'security.user.edit.searching' |translate}} ({{entity}})</legend>
+				
+					<div class="row form-group psui-search-condition" ng-repeat="crit in searchCrit">
+
+						<div class="col-sm-5">
+							<select class="form-control" ng-model="crit.attribute"
+								ng-options="att.title for att in searchDef.attributes"></select>
+						</div>
+						<div class="col-sm-2">
+							<select
+								class="form-control" ng-model="crit.operator"
+								ng-Init="crit.operator=searchDef.operators[0]"
+								ng-options="op.title for op in searchDef.operators"></select>
+						</div>
+						<div class="col-sm-3">
+							<input
+								type="text" id="name" name="name" ng-model="crit.value"
+								placeholder="value" class="ng-pristine ng-valid form-control"
+								autocomplete="off">
+
+						</div>
+						<div class="col-sm-2">
+							<button ng-click="removeCrit($index)" class="btn btn-secundary pull-right">
+						<i class="glyphicon-remove"></i>{{'security.user.edit.cancel' |translate}}
+							</button>
+						</div>
+					</div>
+
+					<div class="row form-group">
+						<div class="col-xs-9">
+							<button ng-click="addCrit()" class="btn btn-secondary"><i class="glyphicon-plus"></i>{{'security.user.edit.add' |translate}}</button>
+						</div>
+						<div class="col-xs-3">
+							<button ng-click="search()" class="btn btn-primary pull-right"><i class="glyphicon-search"></i>{{'security.user.edit.search' |translate}}</button>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+			
+			<div ng-show='userList'>
+				<fieldset>
+				<legend>{{'security.user.edit.result' |translate}} ({{entity}})</legend>
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th ng-repeat="header in headers">{{header.title}}</th>
+						<th>{{'security.user.edit.actions' |translate}}</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-class="{'psui-active': (selectedUser===obj)}" ng-repeat="obj in userList" ng-click="goView($index)"
+									class="list-row">
+									<td ng-repeat="header in headers">{{getVal("obj." +
+										header.field)}} {{$eval("obj."+header.field)}}</td>
+
+									<td class="psui-actions-holder">
+										<span class="psui-btn psui-edit-btn" ng-click='selectUser(obj)'>
+											<i></i><span>{{'security.user.edit.edit' |translate}}</span>
+										</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</fieldset>
+			<button class="btn btn-secundary pull-right" ng-click='searchNext()'> >>> </button>
+			</div>
+		</div>
+
+		<div ng-show="selectedUser" class="col-md-12 col-lg-4">
+				<div  class="form form-horizontal" >
+					<fieldset>
+						<legend>{{'security.user.edit.login.data' |translate}} - {{selectedUser.baseData.name}} {{selectedUser.baseData.surName}} </legend>
+						<div class="form-group">
+							<label for="name" class="col-sm-4 control-label">{{'security.user.edit.login' |translate}}</label>
+							<div class="col-sm-8">
+								<input type="text" id="name" name="name"
+									ng-model="selectedUser.systemCredentials.login.loginName" placeholder=""
+									class="ng-pristine ng-valid form-control" autocomplete="off">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="name" class="col-sm-4 control-label">{{'security.user.edit.email' |translate}}</label>
+							<div class="col-sm-8">
+								<input type="text" id="name" name="name"
+									ng-model="selectedUser.systemCredentials.login.email" placeholder=""
+									class="ng-pristine ng-valid form-control" autocomplete="off">
+							</div>
+						</div>
+
+						<div class="form-group">
+							
+						</div>
+						
+					</fieldset>
+				</div>
+		
+			
+			<div  class="form form-horizontal" >
+				
+
+				<fieldset class="row">
+					<legend>
+						{{'security.user.edit.profile' |translate}}
+					</legend>
+					
+					<div class="form-group">
+						<div class="col-md-12">
+							<div class="row psui-multiselect-box">
+								<div class="col-sm-6 permissions psui-box">
+									<header>{{'security.user.edit.added.profiles' |translate}}</header>
+									<section class="psui-list" >
+										<div ng-repeat="profile in user.profiles" class="psui-list-item" ng-click="removeProfile(profile)">
+											<i class="glyphicon-minus"></i><span>{{profile.baseData.name}}</span>
+										</div>
+									</section>
+								</div>
+								<div class="col-sm-6 permissions psui-box">
+									<header>{{'security.user.edit.available.profiles' |translate}}</header>
+									<section class="psui-list">
+										<div ng-repeat="profile in profiles" class="psui-list-item" ng-click="addProfile(profile)">
+											<i class="glyphicon-plus"></i><span>{{profile.baseData.name}}</span>
+										</div>
+									</section>
+								</div>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+				
+				<div class="form-group">
+					<div class="col-md-12">
+						<div class="btn-group pull-right">
+							<button ng-click="resetPassword() " class="btn btn-secondary">Resetnúť heslo</button>
+							<button ng-click="updateUserSecurity()" class="btn btn-primary">
+								<i class="glyphicon-ok"></i>{{'security.user.edit.save' |translate}}
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+

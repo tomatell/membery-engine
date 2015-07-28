@@ -1,0 +1,88 @@
+.table {
+	width: 100%;
+	margin-bottom: 0px;
+
+	td, 
+	th{
+		padding: $table-cell-padding-vertical $table-cell-padding-horizontal;
+	}
+
+	th{
+		background-color: $table-th-bg;
+		color: $table-th-color;
+		font-weight: normal;
+		border-bottom: 0px !important;
+		position: relative;
+
+		&.psui-action-sort{
+			cursor: pointer;
+			position: relative;
+			padding-right: $table-cell-padding-horizontal + ($table-cell-padding-horizontal/2);
+			@include user-select(none);
+			
+			&:before{
+				position: absolute;
+				right: 4px;
+				top: 50%;
+				margin-top: - $font-size-base/2;
+			}
+			&:hover{
+				background-color: $table-tr-selected-bg;	
+			}
+		}
+	}
+	
+	tr{
+		td{
+			border-bottom: 1px solid $table-td-border-color;
+		}
+
+		&:last-child{
+			td{
+				border-bottom: 0px;
+			}
+		}
+		
+		&.psui-active{
+			background-color: $table-tr-selected-bg !important;
+		}
+		
+	}
+	td{
+		border-bottom: 1px solid $table-td-border-color;
+	}
+
+	tr.selected td {
+		background: #ddd;
+	}
+	
+	tbody{
+		
+		tr{
+			&:nth-child(2n){
+				background-color: $table-tr-even-bg;
+			}
+			
+			&:hover{
+				background-color: $table-tr-selected-bg;
+				
+				.psui-actions-holder{
+					.psui-btn{
+						> :first-child{
+							border-color: $input-border-color;
+						}
+					}
+				}
+
+			}
+		}
+	}
+	
+	.psui-actions-holder{
+		text-align: right;
+		.psui-btn{
+			line-height: inherit;
+			background-color: inherit;
+		}
+	}
+}

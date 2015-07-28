@@ -1,0 +1,81 @@
+body {
+	font-family: "Arial", "Helvetica", sans-serif;
+	line-height: 1.2em;
+}
+
+#demo1 INPUT {
+	padding: 0 0 0 0;
+	box-sizing: border-box;
+	border: silver solid 1px;
+	padding-left: 5px;
+}
+
+#demo1 .psui-dropdown {
+	max-height: 100px;
+	background-color: white;
+	border: silver solid 1px;
+	z-index:1000;
+}
+
+#demo1 .psui-dropdown DIV {
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+#demo1 .psui-dropdown .psui-selected {
+	background-color: silver;
+}
+
+#demo2 .psui-wrapper {
+	display: block;
+}
+
+#demo2 .psui-contenteditable {
+	width: 100%;
+	display: block;
+	height: 600px;
+	border: silver solid 1px;
+	overflow-x: auto;
+	overflow-y: auto;
+}
+
+#demo3 .psui-selectbox {
+	padding: 0 0 0 0;
+	box-sizing: border-box;
+	border: silver solid 1px;
+	padding-left: 5px;
+	width: 150px;
+}
+
+#demo3 .psui-dropdown {
+	max-height: 100px;
+	background-color: white;
+	border: silver solid 1px;
+	padding-left: 5px;
+	z-index:1000;
+}
+
+#demo3 .psui-dropdown .psui-selected {
+	background-color: silver;
+}
+
+#demo4 .psui-datepicker {
+	padding: 0 0 0 0;
+	box-sizing: border-box;
+	border: silver solid 1px;
+	padding-left: 5px;
+	width: 150px;
+}
+
+#demo4 .psui-dropdown {
+	background-color: white;
+	z-index:1000;
+}
+
+#demo4-2 .psui-dropdown {
+	background-color: white;
+	z-index:1000;
+}
+

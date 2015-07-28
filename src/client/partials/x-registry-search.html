@@ -1,0 +1,66 @@
+<section>
+<form novalidate class="flex-form">
+	<fieldset class="flex-form-fieldset-search-box">
+	<span class="x-fieldset-title">{{'generic.search.searching' | translate}} ({{schema.transCode || schema.title | translate}})</span>
+	<div class="flex-form-row" ng-repeat="crit in searchCrits">
+		<div class="flex-form-col-left">
+			<select ng-options="d.name group by [d.group] for d in schemaFields" ng-model="crit.field" ng-change=""></select>
+		</div>
+		<div class="flex-form-col-left">
+			<select ng-options="o.text for o in allOps" ng-model="crit.op"></select>
+		</div>
+		<div class="flex-form-col-middle" 
+				xpsui-by-schema-field-edit xpsui-schema="{{crit.field.path ? 'schema.' + objectPathToSchemaPath(crit.field.path) : null}}" 
+				xpsui-model="crit.val" ng-keypress="filterKeyPressed($event)"></div>
+		<div class="flex-form-col-right">
+			<button ng-click="removeCrit($index)" type="button" class="btn-clear"><i class="icon-remove"></i> {{'generic.search.remove' | translate}}</button>
+		</div>
+	</div>
+	<div class="flex-form-row" style="">
+		<div class="flex-form-col-middle">
+			<button ng-click="addNewCrit()" type="button" class="btn-secondary"><i class="icon-add"></i> {{'generic.search.add' | translate}}</button>	
+		</div>
+		<div class="flex-form-col-content-end">
+			<button ng-click="search()" type="button" class="btn-primary"><i ng-show="!isSearching" class="icon-search"></i><i ng-show="isSearching" class="fa fa-spinner fa-spin"></i> {{'generic.search.search' | translate}}</button>	
+		</div>
+	</div>
+	</fieldset>
+</form>
+<fieldset class="flex-form-fieldset">
+	<span class="x-fieldset-title">{{'generic.search.result.of.searching' | translate}}</span>
+	<div class="search-header flex-form-headers" >
+		<div ng-repeat="f in schema.listFields" class="flex-form-header" ng-click="changeSort(f.field);"
+				ng-style="{'flex': fieldWeigth(f), '-webkit-flex': fieldWeigth(f) }">
+			{{f.transCode || f.title | translate}}
+			<i ng-show="f.field == currSort.field && currSort.order == sort.ASC" class="icon-chevron-up" class="flex-form-header-icon"></i>
+			<i ng-show="f.field == currSort.field && currSort.order == sort.DESC" class="icon-chevron-down" class="flex-form-header-icon"></i>
+		</div>
+		<div class="flex-form-header-inactive">{{'generic.search.action' | translate}}</div>
+	</div>
+	<div ng-repeat="d in data" class="flex-form-data-row row-{{($index%2)?'odd':'even'}}">
+		<div ng-repeat="f in schema.listFields" 
+				ng-style="{'flex': fieldWeigth(f), '-webkit-flex': fieldWeigth(f) }"
+				class="flex-form-data-col" 
+				xpsui-by-schema-field-view xpsui-schema="{{'$parent.$parent.schema.' + objectPathToSchemaPath(f.field)}}" 
+				xpsui-model="$parent.d[f.field]">x</div>
+		<div class="psui-actions-holder flex-form-data-action">
+			<a ng-repeat="a in $parent.schema.clientActions" 
+			xpsui-record-action xpsui-model="$parent.$parent.model[$parent.$index]"
+			xpsui-schema="a" class="btn-primary" type="button"
+			ng-class="{'ibActive':btn-primary}"
+			style="background-color: #b0b0b0; border-color: #a3a3a3;">{{'generic.search.view' | translate}}
+			</a>
+		</div>	
+	</div></div></div>
+</fieldset>
+<fieldset class="flex-form-fieldset">
+	<div class="flex">
+		<div class="">
+			<button ng-show="data" ng-click='exportCsv()' class="btn-secondary"> {{'generic.search.export.csv' | translate}} <i ng-show="isExporting" class="fa fa-spinner fa-spin"></i></button>
+		</div>
+		<div class="flex-form-col-end">
+			<button ng-show="moreData" ng-click="next()" type="button" class="btn-primary pull-right"><i ng-show="!isSearching" class="fa fa-forward"></i><i ng-show="isSearching" class="fa fa-spinner fa-spin"></i> Viac</button>
+		</div>
+	</div>
+</fieldset>
+</section>

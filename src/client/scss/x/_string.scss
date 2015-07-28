@@ -1,0 +1,14 @@
+
+.x-string-view {
+	@include inline-view();
+	> div{
+		// fix min height
+		// display: inline-block;
+		display: block;
+	}
+}
+
+.x-string-edit {
+	@include inline-edit();
+	padding: 0px;
+}

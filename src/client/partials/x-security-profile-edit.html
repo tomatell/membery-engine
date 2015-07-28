@@ -1,0 +1,250 @@
+<div id="SearchPage">
+	<div>
+		<div>
+			<form>
+				<fieldset>
+					<span class="x-fieldset-title">{{'generic.search.searching' | translate}} ({{schema.transCode || schema.title | translate}})</span>
+
+					<div ng-repeat="crit in searchCrit" class="x-fieldset-row">
+
+						<div class="x-fieldset-col-4">
+							<select ng-model="crit.attribute"
+								ng-options="att.title for att in searchDef.attributes"></select>
+						</div>
+						<div class="x-fieldset-col-2">
+							<select
+								ng-model="crit.operator"
+								ng-Init="crit.operator=searchDef.operators[0]"
+								ng-options="op.title for op in searchDef.operators"></select>
+						</div>
+						<div ng-show="!crit.objectLink" class="x-fieldset-col-4">
+							<input
+								type="text" id="name" name="name" ng-model="crit.value"
+								placeholder="value" class="ng-pristine ng-valid"
+								autocomplete="off" ng-keydown="fieldKeyDown($event);">
+
+						</div>
+						<div ng-show="crit.objectLink" class="x-fieldset-col-4">
+							<input
+								type="text" id="name" name="name" ng-model="crit.selectedObject"
+								placeholder="value" class="ng-pristine ng-valid"
+								autocomplete="off">
+						</div>
+
+						<div class="x-fieldset-col-2">
+							<button ng-click="removeCrit($index)" class="btn-clear">
+								<i class="icon-remove"></i>
+								{{'security.profile.edit.cancel' |translate}}
+							</button>
+						</div>
+					</div>
+
+					<div class="x-fieldset-row">
+						<div class="pull-left">
+							<button ng-click="addCrit()" class="btn-secondary">
+								<i class="icon-add"></i>
+								{{'security.profile.edit.add' |translate}}
+							</button>
+						</div>
+						<div class="pull-right">
+							<button ng-click="search()" class="btn-primary">
+								<i class="icon-search"></i>
+								{{'security.profile.edit.search' |translate}}
+							</button>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+
+			<div ng-show='profileList'>
+				<fieldset>
+					<span class="x-fieldset-title">{{'generic.search.result.of.searching' | translate}}</span>
+
+					<div>
+						<table>
+							<thead>
+								<tr>
+									<th ng-repeat="f in schema.listFields">{{f.transCode || f.title | translate}}</th>
+						<th>{{'security.profile.edit.actions' |translate}}</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-class="{'psui-active': (selectedProfile===obj)}" ng-repeat="obj in profileList" ng-click="goView($index)"
+									>
+									<td ng-repeat="f in schema.listFields">{{getVal("obj." +
+										f.field)}} {{$eval("obj."+f.field)}}</td>
+
+									<td>
+										<span ng-click='selectProfile(obj)' class="item-clickable">
+											<i class="icon-pencil"></i> <span>{{'security.profile.edit.edit' |translate}}</span>
+										</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</fieldset>
+			</div>
+
+		</div>
+	</div>
+	<div>
+		<div ng-show="selectedProfile" >
+				<div>
+					<fieldset>
+						<span class="x-fieldset-title">{{'security.profile.edit.name.data' |translate}} - {{selectedProfile.baseData.name}}</span>
+
+						<div class="x-fieldset-row">
+							<div class="x-fieldset-label">
+								<label for="name">{{'security.profile.edit.name' |translate}}</label>
+							</div>
+							<div class="x-fieldset-value">
+								<input type="text" id="name" name="name"
+									ng-model="selectedProfile.baseData.name" placeholder=""
+									class="ng-pristine ng-valid" autocomplete="off">
+							</div>
+						</div>
+						<div>
+
+						</div>
+
+					</fieldset>
+				</div>
+
+			<div>
+				<fieldset>
+					<span class="x-fieldset-title">
+						{{'security.profile.edit.groups' |translate}} - {{selectedProfile.baseData.name}}
+					</span>
+
+					<div>
+						<div>
+							<div  class="x-multiselect-box">
+								<div >
+									<header>{{'security.profile.edit.added.groups' |translate}}</header>
+									<section >
+										<div ng-repeat="group in profile.groups" ng-click="removeGroup(group)">
+											<i class="icon-minus"></i> <span>{{group.baseData.name}}</span>
+										</div>
+									</section>
+								</div>
+								<div >
+									<header>{{'security.profile.edit.available.groups' |translate}}</header>
+									<section>
+										<div ng-repeat="group in groups" ng-click="addGroup(group)">
+											<i class="icon-add"></i> <span>{{group.baseData.name}}</span>
+										</div>
+									</section>
+								</div>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+
+			<div>
+				<fieldset>
+					<span class="x-fieldset-title">
+						{{'security.profile.edit.permissions' |translate}} -
+							{{selectedProfile.baseData.name}}
+					</span>
+
+					<div>
+						<div>
+							<div class="x-multiselect-box">
+								<div >
+									<header>{{'security.profile.edit.added.permissions' |translate}}</header>
+									<section >
+										<div ng-repeat="perm in profile.permissions" ng-click="removePermission(perm)">
+											<i class="icon-minus"></i> <span>{{perm}}</span>
+										</div>
+									</section>
+								</div>
+								<div >
+									<header>{{'security.profile.edit.available.permissions' |translate}}</header>
+									<section>
+										<div ng-repeat="perm in permissions" ng-click="addPermission(perm)">
+											<i class="icon-add"></i> <span>{{perm}}</span>
+										</div>
+									</section>
+								</div>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+
+				<fieldset>
+					<span class="x-fieldset-title">
+						{{'security.profile.edit.data.criteria' |translate}} - {{selectedProfile.baseData.name}}
+					</span>
+
+					<div ng-repeat="crit in profileCrit" class="x-fieldset-row">
+						<div class="x-fieldset-col-4">
+							<select ng-model="crit.schema"
+								ng-options="schema for schema in searchSchemas"  ng-change="schemaChange(crit)" ></select>
+						</div>
+						<div class="x-fieldset-col-2">
+							<select ng-model="crit.attribute"
+								ng-options="att.title group by att.group for att in crit.attDef.attributes"></select>
+						</div>
+						<div class="x-fieldset-col-2">
+							<select
+								ng-model="crit.operator"
+								ng-options="op.title for op in searchDef.operators"></select>
+						</div>
+						<div ng-show="!crit.attribute.render" class="x-fieldset-col-2">
+							<input
+								type="text" id="name" name="name" ng-model="crit.value"
+								placeholder="value" class="ng-pristine ng-valid"
+								autocomplete="off">
+						</div>
+
+						<div  class="x-fieldset-col-2">
+							<input
+								type="text" id="name" name="name" ng-model="crit.expr"
+								placeholder="expression" class="ng-pristine ng-valid"
+								autocomplete="off">
+						</div>
+
+
+						<div ng-show="crit.attribute.render.objectLink2" class="x-fieldset-col-2">
+							<psui-objectlink schema-fragment="crit.attribute.schemaFragment" ng-model="crit.obj" />
+						</div>
+
+						<div class="x-fieldset-col-2">
+							<button ng-click="removeProfileCrit($index)" class="btn-clear">
+								<i class="icon-remove"></i> {{'security.profile.edit.cancel' |translate}}
+							</button>
+						</div>
+					</div>
+					<div class="x-fieldset-row">
+						<div class="x-fieldset-col-4">
+							<button ng-click="addProfileCrit()" class="btn-secondary">
+								<i class="icon-add"></i> {{'security.profile.edit.add' |translate}}
+							</button>
+						</div>
+					</div>
+				</fieldset>
+
+				<fieldset>
+					<div class="x-fieldset-row">
+						<div class="x-fieldset-col-4">
+							&nbsp;
+						</div>
+						<div class="x-fieldset-col-4">
+							&nbsp;
+						</div>
+						<div class="x-fieldset-col-4 pull-right">
+							<button ng-click="updateProfileSecurity()" class="btn btn-primary">
+								<i class="glyphicon-ok"></i>{{'security.profile.edit.save' |translate}}
+							</button>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+
+
+		</div>
+	</div>
+
+</div>

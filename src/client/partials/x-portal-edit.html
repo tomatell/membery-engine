@@ -1,0 +1,111 @@
+<h1>{{'portal.edit.title' | translate}}</h1>
+<fieldset class="form-group" style="background-color: black; padding: 10px;" ng-show="mode !== 'edit'">
+<div class="btn-group pull-right">
+	<button class="btn btn-primary btn-ok" ng-click="edit();"><i class="icon-pencil"></i>{{'portal.edit.edit' | translate}}</button>
+	<button class="btn btn-primary btn-ok" ng-click="addNew();"><i class="icon-add-circle"></i>{{'portal.edit.new' | translate}}</button>
+</div>
+</fieldset>
+<div ng-show="mode === 'edit'">
+<fieldset class="form-group" style="background-color: black; padding: 10px;">
+<div class="btn-group">
+	<button class="btn btn-primary btn-ok" ng-click="showBlockSelector();"><i class="icon-add-circle"></i>{{'portal.edit.add.block' | translate}}</button>
+
+	<div class="pull-right">
+		<button class="btn btn-secondary btn-cancel" ng-click="cancel();"><i class="icon-remove"></i>{{'portal.edit.cancel' | translate}}</button>
+		<button class="btn btn-primary btn-ok" ng-click="save();"><i class="icon-check"></i>{{'portal.edit.save' | translate}}</button>
+	</div>
+</div>
+</fieldset>
+<form class="form">
+<fieldset style="background-color: black; padding: 10px;" ng-show="mode === 'edit'">
+<div style="background-color: white; padding: 10px;">
+	<div class="x-fieldset-row">
+		<div class="x-fieldset-label">
+			<label>{{'portal.edit.new.name' | translate}}</label>
+		</div>
+		<div class="x-fieldset-value">
+			<div xpsui-string-edit ng-model="model.meta.title"></div>
+		</div>
+	</div>
+	<div class="x-fieldset-row">
+		<div class="x-fieldset-label">
+			<label>{{'portal.edit.new.template' | translate}}</label>
+		</div>
+		<div class="x-fieldset-value">
+			<select ng-model="model.meta.template" class="form-control" ng-options="template.meta.template as name for (name, template) in templates" ng-change="templateChanged();"></select>
+		</div>
+	</div>
+	<div class="x-fieldset-row">
+		<div class="x-fieldset-label">
+			<label>{{'portal.edit.new.publish' | translate}}</label>
+		</div>
+		<div class="x-fieldset-value">
+			<input type="checkbox" ng-model="model.meta.enabled"></input>
+		</div>
+	</div>
+	<div class="x-fieldset-row">
+		<div class="x-fieldset-label">
+			<label>{{'portal.edit.new.publishFrom' | translate}}</label>
+		</div>
+		<div class="x-fieldset-value">
+			<div xpsui-date-edit xpsui-calendar ng-model="model.meta.publishFrom"></div>
+		</div>
+	</div>
+	<div class="x-fieldset-row">
+		<div class="x-fieldset-label">
+			<label >{{'portal.edit.new.tags' | translate}}</label>
+		</div>
+		<div class="x-fieldset-value">
+			<div xpsui-multistring-edit ng-model="model.meta.tags"></div>
+		</div>
+	</div>
+	<div class="x-fieldset-row">
+		&nbsp;
+	</div>
+</div>
+</form>
+</fieldset>
+</div>
+
+</div>
+	<div id="portal-edit-block-selector" ng-show="blockSelectorShown">
+		<div class="portal-edit-block-outer portal-edit-gridStyle">
+			<div class="portal-edit-block-inner" style="height: 100%;background: transparent;">
+				
+					<div class="portal-edit-modal-header">
+						<div style="float: right; height: 30px; font-size: 24px;  padding-left: 10px; margin-top: 0px;">
+							<a ng-click="hideBlockSelector();"><i ng-mouseover="hoverCloseWhite();" ng-mouseleave="hoverCloseBlack();" class="action-button icon-remove" style="color:{{color}};"></i></a>
+						</div>
+						<div style="font-size: 16px; font-weight: bold; color: #333333; height: 30px; padding-left: 10px; padding-right: 40px; margin-top: 7px;">{{'portal.edit.block.choice' | translate}}</div>
+					</div>
+				<div class="portal-edit-modal">
+					<div class="portal-edit-scroller"><div style="position: relative; background-color: white; width: auto; height: auto;">
+				 		<div class="portal-edit-block-selector-block portal-edit-grid">
+							<div ng-repeat="(name, block) in blocks" ng-click="selectBlock(name)" class="portal-edit-col-1-1" >
+								<div ng-mouseover="hoverShowDesc(block.meta.desc);" align="center" style="padding: 10px; text-align=center; word-wrap: break-word; word-break: break-all;white-space:normal;" align="center">
+									<div>
+										<div>
+											<img ng-src="{{block.meta.icon}}" width="103px" height="103px"/>
+										</div>
+										<div style="color: black; font-size: 16px;align: top">
+											<h4 ng-bind-html="makeSafe(block.meta.title);"></h4>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div></div>
+					</div>
+
+				</div>
+				<div class="portal-edit-modal-footer">
+						<div class="portal-edit-block-footer">{{'portal.edit.block.description' | translate}}
+							<div class="portal-edit-desc">{{msg}}</div>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<section id="portal-editor-edit" ng-include="getViewTemplate()">
+<section>
+

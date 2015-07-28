@@ -1,0 +1,158 @@
+<div id="SearchPage">
+	<div>
+		<div>
+			<form>
+				<fieldset>
+				<!-- <div class="clearfix"> -->
+					<span class="x-fieldset-title">{{'generic.search.searching' | translate}} ({{schema.transCode || schema.title | translate}})</span>
+
+					<div ng-repeat="crit in searchCrit" class="x-fieldset-row">
+
+						<div class="x-fieldset-col-4">
+							<select ng-model="crit.attribute"
+								ng-options="att.title for att in searchDef.attributes"></select>
+						</div>
+						<div class="x-fieldset-col-2">
+							<select
+								ng-model="crit.operator"
+								ng-Init="crit.operator=searchDef.operators[0]"
+								ng-options="op.title for op in searchDef.operators"></select>
+						</div>
+						<div ng-show="!crit.objectLink" class="x-fieldset-col-4">
+							<input
+								type="text" id="name" name="name" ng-model="crit.value"
+								placeholder="value" class="ng-pristine ng-valid"
+								autocomplete="off" ng-keydown="fieldKeyDown($event);">
+
+						</div>
+						<div class="x-fieldset-col-2">
+							<button ng-click="removeCrit($index)" class="btn-clear">
+								<i class="icon-remove"></i> {{'security.user.edit.cancel' |translate}}
+							</button>
+						</div>
+					</div>
+
+					<div class="x-fieldset-row">
+						<div class="pull-left">
+							<button ng-click="addCrit()" class="btn-secondary"><i class="icon-add"></i> {{'security.user.edit.add' |translate}}</button>
+						</div>
+						<div class="pull-right">
+							<button ng-click="search()" class="btn-primary"><i class="icon-search"></i> {{'security.user.edit.search' |translate}}</button>
+						</div>
+					</div>
+				<!-- </div> -->
+				</fieldset>
+			</form>
+			
+			<div ng-show="userList">
+				<!-- <div class="x-fieldset"> -->
+				<fieldset>
+					<spam class="x-fieldset-title ng-binding">{{'generic.search.result.of.searching' | translate}}</spam>
+					<div>
+						<table>
+							<thead>
+								<tr>
+									<th ng-repeat="f in schema.listFields">{{f.transCode || f.title | translate}}</th>
+									<th>{{'security.user.edit.actions' | translate}}</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-class="{'psui-active': (selectedUser===obj)}" ng-repeat="obj in userList" ng-click="goView($index)">
+									<td ng-repeat="f in schema.listFields">{{getVal("obj." +
+										f.field)}} {{$eval("obj."+f.field)}}</td>
+
+									<td>
+										<a ng-click='selectUser(obj)' class="item-clickable">
+											<i class="icon-pencil"></i> <span>{{'security.user.edit.edit' |translate}}</span>
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<div class="x-fieldset">
+						<div>
+							<div class="pull-right">
+								<button ng-click='searchNext()' class="btn-secondary"> >>> </button>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+				<!-- </div> -->
+			
+			</div>
+		</div>
+
+		<div ng-show="selectedUser" class="x-fieldset">
+			<div  class="x-fieldset">
+				
+				<span class="x-fieldset-title">{{'security.user.edit.login.data' |translate}} - {{selectedUser.baseData.name}} {{selectedUser.baseData.surName}}</span>
+
+				<div class="x-fieldset-row">
+					<div class="x-fieldset-label">
+						<label for="name">{{'security.user.edit.login' |translate}}</label>
+					</div>
+					<div class="x-fieldset-value">
+						<input type="text" id="name" name="name"
+							ng-model="selectedUser.systemCredentials.login.loginName" placeholder=""
+							class="ng-pristine ng-valid" autocomplete="off">
+					</div>
+				</div>
+				<div class="x-fieldset-row">
+					<div class="x-fieldset-label">
+						<label for="name">{{'security.user.edit.email' |translate}}</label>
+					</div>
+					<div class="x-fieldset-value">
+						<input type="text" id="name" name="name"
+							ng-model="selectedUser.systemCredentials.login.email" placeholder=""
+							class="ng-pristine ng-valid" autocomplete="off">
+					</div>
+				</div>
+				
+			</div>
+			<div class="x-fieldset">
+				<!-- <fieldset class="in-sequence"> -->
+				<span class="x-fieldset-title">
+					{{'security.user.edit.profile' |translate}}
+				</span>
+				
+				<div>
+					<div>
+						<div class="x-multiselect-box">
+							<div>
+								<header>{{'security.user.edit.added.profiles' |translate}}</header>
+								<section>
+									<div ng-repeat="profile in user.profiles" ng-click="removeProfile(profile)">
+										<i class="icon-minus"></i> <span>{{profile.baseData.name}}</span>
+									</div>
+								</section>
+							</div>
+							<div>
+								<header>{{'security.user.edit.available.profiles' |translate}}</header>
+								<section>
+									<div ng-repeat="profile in profiles" ng-click="addProfile(profile)">
+										<i class="icon-add"></i> <span>{{profile.baseData.name}}</span>
+									</div>
+								</section>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- </fieldset> -->
+
+				<div class="x-fieldset">
+					<div>
+						<div class="pull-right">
+							<button ng-click="resetPassword() " class="btn-secondary">{{'security.user.edit.reset.password' | translate}}</button>
+							<button ng-click="updateUserSecurity()" class="btn-primary">
+								<i class="icon-check"></i> {{'security.user.edit.save' |translate}}
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

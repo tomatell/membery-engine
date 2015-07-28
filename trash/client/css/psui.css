@@ -1,0 +1,34 @@
+.psui-wrapper {
+	display: inline-block;
+	position: relative;
+	box-sizing: border-box;
+	line-height: 1em;
+}
+
+.psui-buttons-holder {
+	position: absolute;
+	right: 0;
+	top: 0;
+	box-sizing: border-box;
+	text-align: right;
+}
+
+.psui-hidden {
+	display: none !important;
+}
+
+.psui-dropdown-selected {
+	
+}
+
+h1 {
+	line-height: 120%;
+}
+
+h2 {
+	line-height: 120%;
+}
+
+h3 {
+	line-height: 120%;
+}

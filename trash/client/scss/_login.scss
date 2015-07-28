@@ -1,0 +1,62 @@
+.login-page{
+	#main-menu{
+		display: none !important;
+	}
+	
+	header{
+		nav{
+			display: none;
+		}
+		
+		.toogle-menu{
+			display: none !important;
+		}
+	}
+	
+	#content-wrapper{
+		margin-left: 0px;
+	}
+	
+	#login-form{
+		position: absolute;
+		top: 20%;
+		left: 0px;
+		right: 0px;
+	}
+}
+
+#main-wrapper{
+	&.login-page{
+		padding-left: 0px;
+		#content-wrapper{
+			height: 100%;
+			position: relative;
+		}
+		
+		#content{
+			padding-bottom: 0px;
+			> footer{
+				padding-left: 0px;
+				display: none;
+			}
+		} 
+	}
+}
+
+#login-form{
+	position: relative;
+	
+	@include media-mobile{
+		top: 20px;
+	}
+
+	fieldset{
+		position: relative;
+	}
+
+	.lang{
+		position: absolute;
+		right: 0px;
+		top: 10px;
+	}
+}

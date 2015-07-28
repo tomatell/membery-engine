@@ -1,0 +1,140 @@
+$psui-sass-asset-helper: (twbs-font-path("") != unquote('twbs-font-path("")')) !default;
+
+// Devices
+$device-min-width: 320px !default;
+$device-mobile-width: 750px !default;
+$device-tablet-width: 970px !default;
+$device-desktop-width: 1200px !default;
+$device-large-width: 1400px !default;
+
+// Colors
+$font-color-base: #333333 !default;
+$font-color-dark: #636363 !default;
+$font-color-light: #ffffff !default;
+$page-bg: #ffffff !default;
+$main-color: #fdb730 !default;
+$error-color: #ff0000 !default;
+
+$page-bg: $font-color-light !default;
+
+// Typography
+$font-family-base: "Open Sans",helvetica,arial,sans-serif !default;
+$font-size-base: 14px !default;
+$line-height-base: 1.428571429 !default; // 20/14
+$line-height-computed: floor(($font-size-base * $line-height-base)) !default; // ~20px
+
+$font-size-large: ceil(($font-size-base * 1.25)) !default; // ~18px
+$font-size-small: ceil(($font-size-base * 0.85)) !default; // ~12px
+$font-size-mini: ceil(($font-size-base * 0.56)) !default; // ~12px
+
+$font-size-h1: 20px !default;
+$font-size-h2: 18px !default;
+$font-size-h3: 16px !default; 
+$font-size-h4: $font-size-base !default;
+
+
+// Iconography
+$icon-font-path: "../fonts/" !default;
+/*$icon-font-path: "../fonts/" !default;
+$icon-font-name: "font" !default;
+$icon-font-svg-id: "font" !default;*/
+$icon-font-family: "Glyphicons Halflings" !default;
+
+$icon-font2-name: "icomoon" !default;
+$icon-font2-svg-id: "icomoon" !default;
+$icon-font2-family: "Icon unionsoft" !default;
+
+// Component common
+$padding-base-vertical: 4px !default;
+$padding-base-horizontal: 12px !default;
+
+$padding-large-vertical: 10px !default;
+$padding-large-horizontal:  16px !default;
+
+$padding-small-vertical: 5px !default;
+$padding-small-horizontal: 10px !default;
+
+// Content
+$content-padding: 30px !default; 
+
+// Header
+$header-height: 46px !default;
+$header-font-size: $font-size-base !default;
+$header-line-height: floor(($header-font-size * $line-height-base));
+$header-bg: $main-color !default;
+$header-color-base: $font-color-base !default;
+$header-light-bg: lighten($header-bg, 30%) !default;
+$header-notification-color: red !default;
+$header-box-shadow: lighten(#383838, 40%) !default;
+
+// Main Menu
+$sidebar-size: 55px;
+$sidebar-width: 150px !default;
+$sidebar-color-base: $font-color-light !default;
+$sidebar-first-level-color-bg: #212121 !default;
+$sidebar-secound-level-color-bg: lighten($sidebar-first-level-color-bg, 10%) !default;
+$sidebar-menu-item-padding: 16px;
+$sidebar-icon-size: 23px !default;
+$sidebar-color-hover: $main-color !default;
+$sideber-width: 250px !default;
+
+// from
+$input-bg: #fafafa !default;
+$input-border-color: #b0b0b0 !default;
+$button-line-height: 1.43 !default;
+$input-height-base: ($line-height-computed + ($padding-base-vertical * 2) + 2) !default;
+$button-submit-bg: $main-color;
+$button-submit-border-color: darken($button-submit-bg, 20%);
+$button-submit-hover-bg: darken($main-color, 10%);
+$button-submit-hover-border-color: darken($button-submit-hover-bg, 20%);
+
+// field action holder
+$field-action-holder-space: 10px !default;
+$field-action-holder-bg: $font-color-light !default;
+$field-padding-vertical: $padding-base-vertical !default;
+
+// errors message
+$errors-bg: $error-color !default;
+$errors-color: $page-bg !default;
+
+// datepicker
+$datepicker-border-color: $input-border-color !default;
+$datepicker-active-color: $main-color !default;
+$datepicker-color: lighten($font-color-base,10%) !default;
+$datepicker-other-days-color: lighten($font-color-base,50%) !default;
+
+// Buttons
+$btn-primary-color: $font-color-light !default;
+$btn-primary-bg: $main-color !default;
+$btn-primary-border: darken($btn-primary-bg, 5%) !default;
+
+$btn-secoundary-color: $font-color-light !default;
+$btn-secoundary-bg: $input-border-color !default;
+$btn-secoundary-border: darken($btn-secoundary-bg, 5%) !default;
+
+$btn-vertical-padding: 6px !default;
+$btn-vertical-margin: $padding-base-vertical !default;
+
+// tables
+$table-cell-padding-vertical: 4px !default;
+$table-cell-padding-horizontal: 12px !default;
+$table-th-bg: $input-border-color !default;
+$table-th-color: $font-color-light !default;
+$table-td-border-color: lighten($table-th-bg,20%) !default;
+$table-tr-selected-bg: $main-color !default;
+$table-tr-even-bg: $input-bg !default;
+
+// object link
+$objectlink-active-color: $main-color !default;
+
+// footer
+$footer-height: 60px !default;
+$footer-height-small: 80px !default;
+$footer-height-xs: 115px !default;
+$footer-font-size: 10px !default;
+
+// contenteditable
+$contenteditable-selected-color: $main-color !default;
+$contenteditable-background-color:#333333 !default;
+$contenteditable-border-color:#636363 !default;
+$contenteditable-font-color:#ffffff !default;

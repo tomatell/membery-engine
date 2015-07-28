@@ -1,0 +1,111 @@
+<div >
+	<div>
+		<!-- <div> -->
+			<div class="x-fieldset">
+				<span class="x-fieldset-title">
+					{{'security.group.edit.list.of.security.groups' | translate}}
+				</span>
+
+				<table>
+					<thead>
+						<tr>
+							<th>{{'security.group.edit.id' | translate}}</th>
+							<th>{{'security.group.edit.name' | translate}}</th>
+							<th>{{'security.group.edit.actions' | translate}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-class="{'psui-active': (selectedGroup===group)}"  ng-repeat="group in groups">
+							<td>{{$index + 1}}</td>
+							<td>{{group.baseData.name}}</td>
+							<td>
+								<a class="psui-btn psui-edit-btn item-clickable" ng-click="selectGroup(group)">
+									<i class="icon-pencil"></i> <span>{{'security.group.edit.edit' | translate}}</span>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		<!-- </div>
+
+		<div> -->
+			<div ng-show="selectedGroup" class="x-fieldset">
+				<div>
+					<fieldset>
+						<span class="x-fieldset-title">{{'security.group.edit.modification.of.security.group' | translate}} - {{selectedGroup.baseData.name}}</span>
+						<div class="x-fieldset-row">
+							<div class="x-fieldset-label">
+								<label for="name">{{'security.group.edit.id.of.group' | translate}}</label>
+							</div>
+							<div class="x-fieldset-value">
+								<input type="text" id="name" name="name"
+									ng-model="selectedGroup.baseData.id" placeholder=""
+									class="ng-pristine ng-valid" autocomplete="off">
+							</div>
+						</div>
+						<div class="x-fieldset-row">
+							<div class="x-fieldset-label">
+								<label for="name">{{'security.group.edit.name.of.group' | translate}}</label>
+							</div>
+							<div class="x-fieldset-value">
+								<input type="text" id="name" name="name"
+									ng-model="selectedGroup.baseData.name" placeholder=""
+									class="ng-pristine ng-valid" autocomplete="off">
+							</div>
+						</div>
+						
+						<div class="x-fieldset-row">
+							<div class="x-fieldset-label">
+								<label for="name">{{'security.group.edit.parent.group' | translate}}</label>
+							</div>
+							<div class="x-fieldset-value">
+								<div xpsui-objectlink2-edit="" xpsui-schema="schemaFormOptions.schema.properties.baseData.properties.parent" ng-model="selectedGroup.baseData.parent" ></div>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				
+				<div >
+					<fieldset>
+						<span class="x-fieldset-title">
+							{{'security.group.edit.permissions' | translate}} - {{selectedGroup.baseData.name}}
+						</span>
+						<div>
+							<div>
+								<div class="x-multiselect-box">
+									<div>
+										<header>{{'security.group.edit.added.permissions' | translate}}</header>
+										<section>
+											<div ng-repeat="perm in group.permissions" class="psui-list-item" ng-click="removePermission(perm)">
+												<i class="icon-minus"></i> <span>{{perm}}</span>
+											</div>
+										</section>
+									</div>
+									<div>
+										<header>{{'security.group.edit.available.permissions' | translate}}</header>
+										<section>
+											<div ng-repeat="perm in permissions" class="psui-list-item" ng-click="addPermission(perm)">
+												<i class="icon-add"></i> <span>{{perm}}</span>
+											</div>
+										</section>
+									</div>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					
+					<fieldset>
+						<div class="pull-right">
+							<button ng-click="updateGroupPermissions()" class="btn-primary">
+								<i class="icon-check"></i> {{'security.group.edit.save' | translate}}
+							</button>
+						</div>
+					</fieldset>
+				</div>
+				
+			</div>
+		<!-- </div> -->
+	</div>
+</div>
+

@@ -1,0 +1,34 @@
+.x-modalview{
+
+	&.x-open{
+		@media (max-width: $screen-sm-max) {
+			background-color: $modlaview-bg-color;
+
+			.x-modalview-window{
+				overflow-y: auto; 			// 06.01.2015 Added by Tom Tanaka to enable scrolling in iOS.
+				-webkit-overflow-y: scroll; // 06.01.2015 Added by Tom Tanaka to enable scrolling in iOS.
+				background-color: $modalview-body-bg-color;
+				
+				&, a {
+					color: $modalview-color;
+				}
+
+			}
+
+			.x-modalview-header{
+				background-color: $modalview-header-bg;
+			}
+
+			.x-modalview-header, .x-modalview-close {
+				color: $color-black;
+			}
+
+			.x-modalview-close{
+				&:hover{
+					color: $color-main-reverse;
+				}
+			}
+		}
+
+	}
+}

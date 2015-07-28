@@ -1,0 +1,18 @@
+.psui-contenteditable{
+	
+	width: 100%;
+	position:relative;
+	float:left;
+	display: block;
+	overflow-x: auto;
+	overflow-y: auto;
+	
+}
+
+.psui-contenteditable-buttons-holder{
+	display: block;
+	position: absolute;
+	bottom:0;
+	float:left;
+	width:100%;
+}

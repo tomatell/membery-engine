@@ -1,0 +1,14 @@
+
+.flex-form-fieldset {
+	.flex-form-data-row.row-even {
+		background-color: $color-grey-light;
+	}
+
+	.flex-form-header:hover {
+		background: $color-main;
+	}
+
+	.flex-form-data-row:hover {
+		background: $color-main;
+	}
+}

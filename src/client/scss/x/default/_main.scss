@@ -1,0 +1,109 @@
+
+// common
+body{
+	color: $font-color-base;
+}
+
+.x-fixed-header {
+	background-color: $header-bg;
+	box-shadow: 0 0 5px gray;
+}
+
+.x-main-content {
+	background-color: white;
+}
+
+.x-component-button {
+	background-color: $header-bg;
+	border: 1px solid white;
+}
+
+button.btn-primary, a.btn-primary, a.btn-primary:HOVER, a.btn-primary:VISITED {
+	color: $color-main-reverse;
+	background-color: $color-main;
+	border-color: $color-main-darker;
+}
+
+button.btn-primary:hover, button.btn-primary:active,
+		a.btn-primary:hover, a.btn-primary:active {
+	background-color: $color-main-highlight;
+	border-color: $color-main-highlight-darker;
+}
+
+button.btn-secondary {
+	color: $color-main-reverse;
+	background-color: $color-secondary;
+	border-color: $color-secondary-darker;
+}
+
+button.btn-secondary:hover, button.btn-secondary:active {
+	background-color: $color-secondary-highlight;
+	border-color: $color-secondary-highlight-darker;
+}
+
+button[disabled="disabled"], 
+		button[disabled="disabled"]:hover,
+		button[disabled="disabled"]:visited {
+	background-color: $color-grey;
+	border-color: $color-grey-light;
+}
+
+#login-form, #SearchPage {
+	fieldset {
+		color: $color-text;
+	}
+}
+
+a, a:HOVER, a:VISITED {
+	color: $color-main;
+}
+
+table.portal-edit-block-selector-block {
+	tr:nth-child(2n) {
+		background-color: inherit;
+	}
+
+	tr:nth-child(2n):hover {
+		background-color: $color-main;
+	}
+
+	h1 {
+		font-size: 20px;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	
+	p {
+		margin-top: 5px;
+		margin-bottom: 5px;
+		white-space: normal;
+	}
+}
+
+.portal-edit-block-outer {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.portal-edit-block-inner {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 60%;
+	background-color: black;
+}
+
+.portal-edit-block-scroller {
+	overflow: auto;
+	height: 500px;
+}
+
+@media (max-width: $screen-sm) {
+	.portal-edit-block-inner {
+		max-width: 100%;
+	}
+
+	.portal-edit-block-scroller {
+		overflow: scroll;
+	}
+}
