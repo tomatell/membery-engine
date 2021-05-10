@@ -29,7 +29,7 @@
     "grunt-express-server": "^0.4.19",
     "grunt-mocha-test": "*",
     "grunt-protractor-runner": "^1.1.4",
-    "mongodb": "^1.4.7",
+    "mongodb": ">=3.1.13",
     "node-uuid": "*",
     "nodemailer": ">=6.4.16",
     "object-hash": "~0.3.0",
