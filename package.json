@@ -31,7 +31,7 @@
     "grunt-protractor-runner": "^1.1.4",
     "mongodb": "^1.4.7",
     "node-uuid": "*",
-    "nodemailer": "^0.6.5",
+    "nodemailer": ">=6.4.16",
     "object-hash": "~0.3.0",
     "q": "^1.1.2",
     "readline": "0.0.3",
